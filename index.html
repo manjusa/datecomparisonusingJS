@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">      
+        <title>Javascript Date Comparisons</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">       <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script
+                src="https://code.jquery.com/jquery-2.2.4.min.js"
+                integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.css">
+        <script src=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+
+
+        <script src="global.js"></script>
+        <script>
+           
+
+            $(document).ready(function() {
+                //Start Date on change      
+                $("#startdateinputid").on('change keyup', function event() {
+                    blankOutEndDateOrEndTimeField();
+                    enableDisableRelatedFields(0,['startdateinputid', 'starttimeid', 'enddateinputid', 'endtimeid']);
+                    
+                });  
+                /////////////////Start Date END/////////////////
+
+                //Start Time   
+                $("#starttimeid").bind('change keyup', function (event) {
+                    blankOutEndDateOrEndTimeField();//handleDateTimeFieldsForMOTD
+                    enableDisableRelatedFields(1,['startdateinputid', 'starttimeid', 'enddateinputid', 'endtimeid']);
+
+                });             
+                /////////////////Start Time END/////////////////
+
+                //End Date
+
+                $("#enddateinputid").on('change keyup', function () {
+                    blankOutEndDateOrEndTimeField();
+                    enableDisableRelatedFields(2,['startdateinputid', 'starttimeid', 'enddateinputid', 'endtimeid']);
+                });
+                /////////////////End Date END/////////////////
+
+                //End Time     
+                $("#endtimeid").on('change keyup', function (event) {
+                    blankOutEndDateOrEndTimeField();
+                    enableDisableRelatedFields(3,['startdateinputid', 'starttimeid', 'enddateinputid', 'endtimeid']);
+                });
+
+                /////////////////End Time END/////////////////
+
+                //approach 1                
+                $('#startDivId').datepicker({
+                    format: 'dd/mm/yyyy',
+                    startDate: new Date(),  //vacation is always in future so did a getDate                
+                    autoclose: true,
+                    language: 'da',
+                    enableOnReadonly: false
+                });
+                $('#endDivId').datepicker({
+                    format: 'dd/mm/yyyy',
+                    startDate: new Date(),                  
+                    autoclose: true,
+                    language: 'da',
+                    enableOnReadonly: false
+                });
+                //approach 2
+                /*$('#startDivId').datepicker({
+                    format: 'mm/dd/yyyy',
+                    startDate: '01/01/2010',
+                    endDate: '12/30/2020',
+                    autoclose: true,
+                    language: 'da',
+                    enableOnReadonly: false
+                });*/
+                $('#startDivId > .form-control').prop('disabled', false);
+                $('#endDivId > .form-control').prop('disabled', false);
+                // } 
+            });  
+        </script>
+        <style>
+            .line {
+                word-wrap: break-word;
+                display: inline-block;
+                max-width: 100%;
+                min-height: 2em;
+                word-break: break-all;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div>
+            <h3 style="margin-left:4%;">Lets compare some dates</h3>
+            <h4 style="margin-left:7%;">Requirement</h4>
+            <p style="margin-left:10%;"><span><i class="glyphicon glyphicon-arrow-right"></i></span> If Start Date is entered and valid, enable Start Time,End Date and End Time</p>
+
+            <p style="margin-left:10%;"><span><i class="glyphicon glyphicon-arrow-right"></i></span> If Start Date and Start Time is entered and valid, enable End Date and End Time</p>
+            <p style="margin-left:10%;"><span><i class="glyphicon glyphicon-arrow-right"></i></span> If Start Date,Start Time and End Date is entered and valid, enable End Time</p>
+            <p style="margin-left:10%;"><span><i class="glyphicon glyphicon-arrow-right"></i></span> Enable Save only if everything entered and valid</p>
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form-horizontal">                        
+                        <div class="col-sm-12">
+                            <div class="col-sm-1">
+                            </div>
+                            <div id="startDivId"  class="input-group date">  
+                                <label>Vacation Start Date <span class="required">*</span></label>
+                                <div class="date input-group">                                       
+                                    <input type="text" class="form-control" id="startdateinputid">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i> </span>
+                                </div>                                   
+                            </div>
+                        </div> 
+                        <div class="col-sm-12">
+                            <div class="col-sm-1">
+                            </div>
+                            <div id="startTimeDivId"  class="form-group input-group">  
+                                <label>Vacation Start Time <span class="required">*</span></label>
+                                <input disabled id="starttimeid" type="text" class="form-control input-sm">
+                                <span id="stspan" title="Correct format is DD:MM"
+                                      class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 
+                            </div>
+                        </div> 
+                        <div class="col-sm-12">
+                            <div class="col-sm-1">
+                            </div>
+                            <div id="endDivId"  class="input-group date">  
+                                <label>Vacation End Date <span class="required">*</span></label>
+                                <div class="date input-group">                                       
+                                    <input disabled type="text" class="form-control" id="enddateinputid">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i> </span>
+                                </div>                                   
+                            </div>
+                        </div> 
+                        <div class="col-sm-12">
+                            <div class="col-sm-1">
+                            </div>
+                            <div id="endTimeDivId"  class="form-group input-group date">  
+                                <label>Vacation End Time <span class="glyphicon glyphicon-info-sign"  id="etspan" title="Correct format is DD:MM" class="required"></span></label>
+                                <input disabled id="endtimeid" type="text" class="form-control input-sm"> 
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-1">
+                            </div>
+                            <button id="save" type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-12"></div>
+            </div>
+        </div>
+    </body>
+</html>
