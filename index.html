@@ -8,28 +8,36 @@
         <meta name="author" content="">      
         <title>Javascript Date Comparisons</title>
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">       <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-        <!-- Latest compiled and minified JavaScript -->
-        <script
-                src="https://code.jquery.com/jquery-2.2.4.min.js"
-                integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-                crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.css">
-        <script src=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+        <!-- incase u want to use  CDN -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> 
+        
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+       
+        
+<!--CDN links if you want to use -->
+     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.css">
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
 
-
+        <!--<link rel="stylesheet" href="bootstrap.min.css">-->
+       <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <script src="jquery.min.js"></script>
+        <script src="bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.css">     
+        <script src="bootstrap-datepicker.min.js"></script> -->
         <script src="global.js"></script>
         <script>
-           
+
 
             $(document).ready(function() {
                 //Start Date on change      
                 $("#startdateinputid").on('change keyup', function event() {
                     blankOutEndDateOrEndTimeField();
                     enableDisableRelatedFields(0,['startdateinputid', 'starttimeid', 'enddateinputid', 'endtimeid']);
-                    
+
                 });  
                 /////////////////Start Date END/////////////////
 
@@ -105,7 +113,7 @@
 
             <p style="margin-left:10%;"><span><i class="glyphicon glyphicon-arrow-right"></i></span> If Vacation Start Date and Vacation Start Time is entered and valid, enable Vacation End Date and Vacation End Time</p>
             <p style="margin-left:10%;"><span><i class="glyphicon glyphicon-arrow-right"></i></span> If Vacation Start Date,Vacation Start Time and Vacation End Date is entered and valid, enable Vacation End Time</p>
-            <p style="margin-left:10%;"><span><i class="glyphicon glyphicon-arrow-right"></i></span> Enable "Get Availablity" only if everything entered and valid</p>
+            <p style="margin-left:10%;"><span><i class="glyphicon glyphicon-arrow-right"></i></span> Enable "Get Availablity" only if everything entered and valid</p>  
             <div class="row">
                 <div class="col-sm-12">
                     <form class="form-horizontal">                        
@@ -152,7 +160,7 @@
                         <div class="col-sm-12">
                             <div class="col-sm-1">
                             </div>
-                            <button id="save" type="button" class="btn btn-primary">Get Availablity</button>
+                            <button disabled id="save" type="button" class="btn btn-primary">Get Availablity</button>
                         </div>
                     </form>
                 </div>
